@@ -18,10 +18,12 @@ if submit_button:
         st.warning("ID와 비밀번호를 모두 입력해주세요.")
     else:
         user = data[(data["ID"] == ID) & (data["PW"] == str(PW))]
-
         if not user.empty:
-            st.success(f"{ID}님 환영합니다!")
+            # 사용자 이름 가져오기
+            user_name = user.iloc[0]["NAME"]  # 첫 번째 행의 NAME 필드 가져오기
+            st.success(f"{user_name}님 환영합니다!")  # NAME 필드를 환영 메시지에 사용
             st.session_state["ID"] = ID
+            st.session_state["NAME"] = user_name
 
             progress_text = "로그인 중입니다."
             my_bar = st.progress(0, text=progress_text)

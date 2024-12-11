@@ -462,8 +462,8 @@ Colombia (urban),1989,14.002999
 Colombia (urban),1991,12.752
 Comoros,2004,14.625825
 Comoros,2014,18.643723
-Congo,2005,49.5537
-Congo,2011,35.357456
+Republic of the Congo,2005,49.5537
+Republic of the Congo,2011,35.357456
 Costa Rica,1981,25.86
 Costa Rica,1986,13.922999
 Costa Rica,1989,10.552571
@@ -501,17 +501,17 @@ Costa Rica,2020,2.2913265
 Costa Rica,2021,1.2421939
 Costa Rica,2022,0.88687354
 Costa Rica,2023,0.88261974
-Cote d'Ivoire,1985,8.229618
-Cote d'Ivoire,1986,4.4354844
-Cote d'Ivoire,1987,9.430369
-Cote d'Ivoire,1988,13.449971
-Cote d'Ivoire,1992,27.058142
-Cote d'Ivoire,1995,25.906212
-Cote d'Ivoire,1998,30.364796
-Cote d'Ivoire,2008,34.41735
-Cote d'Ivoire,2015,33.447136
-Cote d'Ivoire,2018,11.502216
-Cote d'Ivoire,2021,9.733192
+Ivory Coast,1985,8.229618
+Ivory Coast,1986,4.4354844
+Ivory Coast,1987,9.430369
+Ivory Coast,1988,13.449971
+Ivory Coast,1992,27.058142
+Ivory Coast,1995,25.906212
+Ivory Coast,1998,30.364796
+Ivory Coast,2008,34.41735
+Ivory Coast,2015,33.447136
+Ivory Coast,2018,11.502216
+Ivory Coast,2021,9.733192
 Croatia,1988,0
 Croatia,2009,0.85759926
 Croatia,2010,1.2098455
@@ -566,9 +566,9 @@ Czechia,2018,0.008861816
 Czechia,2019,0
 Czechia,2020,0.00814216
 Czechia,2021,0.059850585
-Democratic Republic of Congo,2004,91.4673
-Democratic Republic of Congo,2012,69.68845
-Democratic Republic of Congo,2020,78.94202
+Democratic Republic of the Congo,2004,91.4673
+Democratic Republic of the Congo,2012,69.68845
+Democratic Republic of the Congo,2020,78.94202
 Denmark,1987,0.49739555
 Denmark,1992,0.49395204
 Denmark,1995,0
@@ -2261,11 +2261,11 @@ Tajikistan,2004,21.35816
 Tajikistan,2007,12.797472
 Tajikistan,2009,6.792115
 Tajikistan,2015,6.114529
-Tanzania,1991,69.288864
-Tanzania,2000,84.03533
-Tanzania,2007,56.240715
-Tanzania,2011,44.655464
-Tanzania,2018,44.94932
+United Republic of Tanzania,1991,69.288864
+United Republic of Tanzania,2000,84.03533
+United Republic of Tanzania,2007,56.240715
+United Republic of Tanzania,2011,44.655464
+United Republic of Tanzania,2018,44.94932
 Thailand,1981,22.728
 Thailand,1988,17.636
 Thailand,1990,12.345011
@@ -2425,66 +2425,66 @@ United Kingdom,2018,0.49848223
 United Kingdom,2019,0.49803847
 United Kingdom,2020,0.49933377
 United Kingdom,2021,0.24510054
-United States,1963,1.2488154
-United States,1964,1.2425098
-United States,1965,0.99959636
-United States,1966,0.9982232
-United States,1967,0.998477
-United States,1968,0.7472127
-United States,1969,0.4991601
-United States,1970,0.99295706
-United States,1971,0.747157
-United States,1972,0.74866146
-United States,1973,0.7495643
-United States,1974,0.74715984
-United States,1975,0.49715438
-United States,1976,0.49868184
-United States,1977,0.499499
-United States,1978,0.499942
-United States,1979,0.49982077
-United States,1980,0.4995189
-United States,1981,0.49927452
-United States,1982,0.74773115
-United States,1983,0.49979457
-United States,1984,0.49553943
-United States,1985,0.49709204
-United States,1986,0.49619088
-United States,1987,0.49927145
-United States,1988,0.4992039
-United States,1989,0.49920124
-United States,1990,0.49714324
-United States,1991,0.49938723
-United States,1992,0.49789935
-United States,1993,0.49965855
-United States,1994,0.49979275
-United States,1995,0.49998137
-United States,1996,0.7485454
-United States,1997,0.74906164
-United States,1998,0.7488341
-United States,1999,0.74805623
-United States,2000,0.74959534
-United States,2001,0.7493069
-United States,2002,0.74891585
-United States,2003,0.9974198
-United States,2004,0.9998821
-United States,2005,0.99973184
-United States,2006,0.9989091
-United States,2007,0.99989045
-United States,2008,0.99974924
-United States,2009,0.9993861
-United States,2010,0.99972683
-United States,2011,0.9989762
-United States,2012,0.99847966
-United States,2013,0.99546385
-United States,2014,1.2489468
-United States,2015,1.2491881
-United States,2016,0.9993911
-United States,2017,1.2499229
-United States,2018,0.9997919
-United States,2019,0.99917054
-United States,2020,0.24997409
-United States,2021,0.24871896
-United States,2022,1.2491857
+United States of America,1963,1.2488154
+United States of America,1964,1.2425098
+United States of America,1965,0.99959636
+United States of America,1966,0.9982232
+United States of America,1967,0.998477
+United States of America,1968,0.7472127
+United States of America,1969,0.4991601
+United States of America,1970,0.99295706
+United States of America,1971,0.747157
+United States of America,1972,0.74866146
+United States of America,1973,0.7495643
+United States of America,1974,0.74715984
+United States of America,1975,0.49715438
+United States of America,1976,0.49868184
+United States of America,1977,0.499499
+United States of America,1978,0.499942
+United States of America,1979,0.49982077
+United States of America,1980,0.4995189
+United States of America,1981,0.49927452
+United States of America,1982,0.74773115
+United States of America,1983,0.49979457
+United States of America,1984,0.49553943
+United States of America,1985,0.49709204
+United States of America,1986,0.49619088
+United States of America,1987,0.49927145
+United States of America,1988,0.4992039
+United States of America,1989,0.49920124
+United States of America,1990,0.49714324
+United States of America,1991,0.49938723
+United States of America,1992,0.49789935
+United States of America,1993,0.49965855
+United States of America,1994,0.49979275
+United States of America,1995,0.49998137
+United States of America,1996,0.7485454
+United States of America,1997,0.74906164
+United States of America,1998,0.7488341
+United States of America,1999,0.74805623
+United States of America,2000,0.74959534
+United States of America,2001,0.7493069
+United States of America,2002,0.74891585
+United States of America,2003,0.9974198
+United States of America,2004,0.9998821
+United States of America,2005,0.99973184
+United States of America,2006,0.9989091
+United States of America,2007,0.99989045
+United States of America,2008,0.99974924
+United States of America,2009,0.9993861
+United States of America,2010,0.99972683
+United States of America,2011,0.9989762
+United States of America,2012,0.99847966
+United States of America,2013,0.99546385
+United States of America,2014,1.2489468
+United States of America,2015,1.2491881
+United States of America,2016,0.9993911
+United States of America,2017,1.2499229
+United States of America,2018,0.9997919
+United States of America,2019,0.99917054
+United States of America,2020,0.24997409
+United States of America,2021,0.24871896
+United States of America,2022,1.2491857
 Uruguay,2006,0.5640882
 Uruguay,2007,0.38097277
 Uruguay,2008,0.22757798

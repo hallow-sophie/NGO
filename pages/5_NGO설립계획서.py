@@ -9,7 +9,7 @@ import requests
 # 로그인 상태 확인
 if "ID" not in st.session_state or st.session_state['ID'] == None:
     st.warning("로그인이 필요합니다. 로그인 페이지로 이동합니다.")
-    time.sleep(2)
+    time.sleep(1)
     st.session_state["redirect"] = True
     st.switch_page("pages/2_login.py")
 
@@ -71,7 +71,7 @@ if st.button("인물들에게 물어보기."):
             st.write(response["response"])
 
 
-uploaded_file = st.file_uploader("Upload a text file for image generation", type=["txt"])
+uploaded_file = st.file_uploader("text file을 업로드하면 LOGO를 생성해줘요.", type=["txt"])
 
 if uploaded_file:
     # 파일 저장
@@ -81,7 +81,7 @@ if uploaded_file:
     st.success(f"File '{uploaded_file.name}' uploaded successfully!")
     file_content = uploaded_file.getvalue().decode("utf-8").strip()
 
-    st.write("Generating an image based on the uploaded file...")
+    st.write("AI가 LOGO 를 그리고 있는 중 이에요...")
     with st.spinner("Generating image..."):
         response = client.images.generate(
             model="dall-e-3",

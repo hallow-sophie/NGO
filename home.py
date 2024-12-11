@@ -10,7 +10,7 @@ if "ID" not in st.session_state or st.session_state['ID'] == None:
 
 # 사용자 이름 표시
 st.set_page_config(page_title="홈", page_icon="🏠")
-st.title(f"환영합니다, {st.session_state['ID']}님!")
+st.title(f"환영합니다, {st.session_state['NAME']}님!")
 st.subheader("메인 메뉴")
 
 # 메뉴 버튼
