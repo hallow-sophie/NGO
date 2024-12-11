@@ -4,7 +4,7 @@ import time
 # 로그인 상태 확인
 if "ID" not in st.session_state or st.session_state['ID'] == None:
     st.warning("로그인이 필요합니다. 로그인 페이지로 이동합니다.")
-    time.sleep(2)
+    time.sleep(1)
     st.session_state["redirect"] = True
     st.switch_page("pages/2_login.py")
 
@@ -25,8 +25,8 @@ with col1:
         st.switch_page("pages/4_기대수명.py")
 
 with col2:
-    # if st.button("설정"):
-    #     st.switch_page("settings")
+    if st.button("NGO설립계획서"):
+        st.switch_page("pages/5_NGO설립계획서.py")
 
     if st.button("로그아웃"):
         st.session_state.pop("ID", None)
