@@ -20,14 +20,16 @@ col1, col2 = st.columns(2)
 with col1:
     if st.button("기대수명"):
         st.switch_page("pages/3_기대수명.py")
-
     if st.button("아동사망률"):
         st.switch_page("pages/4_아동사망률.py")
+    if st.button("난민수"):
+        st.switch_page("pages/5_난민수.py")        
 
 with col2:
     if st.button("NGO설립계획서"):
-        st.switch_page("pages/7_NGO설립계획서.py")
-
+        st.switch_page("pages/6_NGO설립계획서.py")
+    if st.button("인터뷰하기"):
+        st.switch_page("pages/7_인터뷰하기.py")
     if st.button("로그아웃"):
         st.session_state.pop("ID", None)
         st.success("로그아웃되었습니다. 로그인 페이지로 이동합니다.")
