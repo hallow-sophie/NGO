@@ -1,10 +1,13 @@
 import streamlit as st
 import pandas as pd
 import time
+import os
+
+current_dir = os.path.dirname(os.path.abspath(__file__))
 
 st.set_page_config(page_title="로그인", page_icon="🔒", layout="wide")
 st.title("로그인 페이지")
-st.image('image.jpg')
+st.image(os.path.join(current_dir,"images", '2024_로고.jpg'))
 data = pd.read_csv("members.csv")
 data["PW"] = data["PW"].astype(str)
 

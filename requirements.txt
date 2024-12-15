@@ -1,1 +1,4 @@
 pandas
+geopandas
+pydeck
+openai
