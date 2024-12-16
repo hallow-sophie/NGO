@@ -21,9 +21,9 @@ col1, col2 = st.columns(2)
 
 with col1:
     if st.button("미션:one:"):
-        st.switch_page("pages/3_미션1. 지구촌 변화와 실태 파악하기!.py.py")
+        st.switch_page("pages/3_미션1. 지구촌 변화와 실태 파악하기!.py")
     if st.button("미션:two:"):
-        st.switch_page("pages/4_미션2. 지구의 자원을 공정하게 배분할 수 있다면.py.py")
+        st.switch_page("pages/4_미션2. 지구의 자원을 공정하게 배분할 수 있다면.py")
     if st.button("난민수"):
         st.switch_page("pages/5_난민수.py")        
 
