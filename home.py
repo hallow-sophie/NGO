@@ -10,18 +10,20 @@ if "ID" not in st.session_state or st.session_state['ID'] == None:
 
 # 사용자 이름 표시
 st.set_page_config(page_title="홈", page_icon="🏠")
-st.title(f"환영합니다, {st.session_state['NAME']}님!")
-st.subheader("메인 메뉴")
+st.title(":globe_with_meridians:지구촌 평화단! NGO프로젝트:globe_with_meridians:")
+st.subheader(f"환영합니다, {st.session_state['NAME']}님!")
+
+# st.subheader("메인 메뉴")
 
 # 메뉴 버튼
 st.markdown("### 메뉴 선택")
 col1, col2 = st.columns(2)
 
 with col1:
-    if st.button("기대수명"):
-        st.switch_page("pages/3_기대수명.py")
-    if st.button("아동사망률"):
-        st.switch_page("pages/4_아동사망률.py")
+    if st.button("미션:one:"):
+        st.switch_page("pages/3_미션1. 지구촌 변화와 실태 파악하기!.py.py")
+    if st.button("미션:two:"):
+        st.switch_page("pages/4_미션2. 지구의 자원을 공정하게 배분할 수 있다면.py.py")
     if st.button("난민수"):
         st.switch_page("pages/5_난민수.py")        
 

@@ -5,6 +5,8 @@ from openai import OpenAI
 from PIL import Image
 import io
 import requests
+from PyPDF2 import PdfReader
+import pdfplumber
 
 # 로그인 상태 확인
 if "ID" not in st.session_state or st.session_state['ID'] is None:
@@ -26,15 +28,16 @@ os.makedirs(user_folder, exist_ok=True)
 # Streamlit 앱 설정
 st.title("NGO 설립계획서")
 
-api_key = os.getenv("OPENAI_API_KEY")
-if not api_key:
-    raise ValueError("API key not found. Please set the OPENAI_API_KEY environment variable.")
+api_key = st.secrets.openAI["api_key"]
+# api_key = os.getenv("OPENAI_API_KEY")
+# if not api_key:
+#     raise ValueError("API key not found. Please set the OPENAI_API_KEY environment variable.")
 
 # OpenAI 클라이언트 초기화
 client = OpenAI(api_key=api_key)
 
 # 탭 구성
-tab1, tab2 = st.tabs(["AI 인물들에게 물어보기", "NGO 로고 생성"])
+tab1, tab2, tab3 = st.tabs(["AI 인물들에게 물어보기", "NGO 로고 생성","뉴스기사 첨삭"])
 
 # 상태 초기화
 if "responses" not in st.session_state:
@@ -43,11 +46,24 @@ if "responses" not in st.session_state:
 if "uploaded_file_content" not in st.session_state:
     st.session_state["uploaded_file_content"] = None
 
+if "pdf_file_content" not in st.session_state:
+    st.session_state["pdf_file_content"] = None
+
 if "image_url" not in st.session_state:
     st.session_state["image_url"] = None
 
 if "user_query" not in st.session_state:
     st.session_state["user_query"] = "빈부격차는 어떻게 분배해야 할까?"
+
+def generate_logo(content):
+    with st.spinner("AI가 LOGO 를 그리고 있는 중이에요..."):
+        response = client.images.generate(
+            model="dall-e-3",
+            prompt=content,
+            n=1,
+            size="1024x1024"
+        )
+    return response.data[0].url
 
 # Tab 1: AI 인물들에게 물어보기
 with tab1:
@@ -96,42 +112,41 @@ with tab1:
                 st.markdown(f"**{response['role']}**")
                 st.write(response["response"])
 
-# Tab 2: NGO 로고 생성
 with tab2:
+    # Streamlit 앱 제목
     st.header("NGO 로고 생성")
 
-    uploaded_file = st.file_uploader(
-        "text file을 업로드하면 LOGO를 생성해줘요.", 
-        type=["txt"], 
-        key="file_uploader_tab2"
-    )
+    # 파일 업로드
+    uploaded_file = st.file_uploader("PDF 파일을 업로드하면 LOGO를 생성해줘요.", type="pdf")
 
-    if uploaded_file:
-        # 파일 저장
-        file_path = os.path.join(user_folder, uploaded_file.name)
-        with open(file_path, "wb") as f:
-            f.write(uploaded_file.getbuffer())
-        st.success(f"File '{uploaded_file.name}' uploaded successfully!")
+    def clean_text(text):
+        # \n을 공백으로 대체
+        text = text.replace("\n", " ")
+        # 불필요한 중복 공백 제거
+        text = " ".join(text.split())
+        return text
 
-        logo_maker = "다음 이어지는 내용을 기반으로 NGO 단체의 로고를 독창적으로 작성해줘."
-        file_content = logo_maker + uploaded_file.getvalue().decode("utf-8").strip()
-        st.session_state["uploaded_file_content"] = file_content  # 파일 내용을 세션에 저장
+    # PDF 파일 읽기
+    if uploaded_file is not None:
+        try:
+            with pdfplumber.open(uploaded_file) as pdf:
+                tables0 = pdf.pages[0].extract_tables()
+                tables1 = pdf.pages[1].extract_tables()
+            
+            pdf_text = ""
+            pdf_text = pdf_text + clean_text("우리 NGO Project의 " + tables0[0][0][0] + "는 " + tables0[0][0][1] + "이야")
+            pdf_text = pdf_text + clean_text("그리고 우리 NGO Project의 " + tables1[0][0][0] + "는 " + tables1[0][0][1] + "이야")
 
-    # 이미지를 생성하는 함수
-    def generate_logo(content):
-        with st.spinner("AI가 LOGO 를 그리고 있는 중이에요..."):
-            response = client.images.generate(
-                model="dall-e-3",
-                prompt=content,
-                n=1,
-                size="1024x1024"
-            )
-        return response.data[0].url
+            logo_maker = "다음 이어지는 내용을 기반으로 NGO 단체의 로고를 독창적으로 작성해줘."
+            file_content = logo_maker + pdf_text
+            st.session_state["pdf_file_content"] = file_content  # 파일 내용을 세션에 저장
 
-    # 로고 생성 버튼
-    if st.session_state["uploaded_file_content"] is not None:
+        except Exception as e:
+            st.error(f"PDF 파일을 읽는 중 오류가 발생했습니다: {e}")
+
+    if st.session_state["pdf_file_content"] is not None:
         if st.button("로고 생성하기", key="generate_logo_button"):
-            st.session_state["image_url"] = generate_logo(st.session_state["uploaded_file_content"])
+            st.session_state["image_url"] = generate_logo(st.session_state["pdf_file_content"])
 
         # 이전에 생성된 이미지 표시
         if st.session_state["image_url"]:
@@ -139,7 +154,57 @@ with tab2:
             st.write("LOGO Image 저장중...")
             image_response = requests.get(st.session_state["image_url"])  # 이미지 URL에서 이미지 다운로드
             image = Image.open(io.BytesIO(image_response.content))
-            image_save_path = os.path.join(user_folder, "AI_LOGO.png")
+            image_save_path = os.path.join(user_folder, "PDF_LOGO.png")
             image.save(image_save_path)
 
             st.success(f"Image saved at: {image_save_path}")
+
+# Tab 3: 뉴스기사 첨삭
+with tab3:
+    st.header("뉴스기사 첨삭하기")
+    system_roles = [
+        {
+            "role": "system",
+            "content": "너는 기사를 아주 잘 쓰는 기자야. 주어진 기사를 잘 첨삭해서 고칠 부분을 알려줘. 너무 어려운 단어는 지양부탁해.",
+        }
+    ]
+    current_chat = system_roles
+    def generate_response(messages):
+        try:
+            response = client.chat.completions.create(
+                model="gpt-4o",  # GPT 모델
+                messages=messages,
+            )
+            return response.choices[0].message.content
+        except Exception as e:
+            st.error(f"OpenAI API 호출 중 오류가 발생했습니다: {str(e)}")
+            return "오류가 발생했습니다. 다시 시도해주세요."    
+        
+    # 파일 업로드
+    uploaded_file = st.file_uploader("PDF 파일을 업로드하면 기사를 첨삭해줘요.", type="pdf")
+
+    def clean_text(text):
+        # \n을 공백으로 대체
+        text = text.replace("\n", " ")
+        # 불필요한 중복 공백 제거
+        text = " ".join(text.split())
+        return text
+
+    # PDF 파일 읽기
+    query = "아래에 주어진 내용들 중에 고칠 부분들을 종류별로 알려줘. 맞춤법/문맥/자연스러움 정도로 나눠서 알려줘."
+    if uploaded_file is not None:
+        try:
+            with pdfplumber.open(uploaded_file) as pdf:
+                for page in pdf.pages:
+                    # 페이지에서 테이블 추출
+                    imsi = page.extract_text()
+                    query = query + imsi
+        except Exception as e:
+            st.error(f"PDF 파일을 읽는 중 오류가 발생했습니다: {e}")
+
+    current_chat.append({"role": "user", "content": query})
+
+    with st.spinner(f"첨삭이 진행 중 입니다..."):
+        response = generate_response(current_chat)
+    current_chat.append({"role": "assistant", "content": response})
+    st.write(response)
