@@ -2,3 +2,5 @@ pandas
 geopandas
 pydeck
 openai
+PyPDF2
+pdfplumber
