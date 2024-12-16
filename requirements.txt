@@ -4,3 +4,4 @@ pydeck
 openai
 PyPDF2
 pdfplumber
+streamlit_gsheets

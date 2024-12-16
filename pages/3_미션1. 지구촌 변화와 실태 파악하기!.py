@@ -4,6 +4,9 @@ import pandas as pd
 import pydeck as pdk
 import streamlit as st
 import time
+from streamlit_gsheets import GSheetsConnection
+import pandas as pd
+
 
 # 로그인 상태 확인
 if "ID" not in st.session_state or st.session_state['ID'] is None:
@@ -11,6 +14,9 @@ if "ID" not in st.session_state or st.session_state['ID'] is None:
     time.sleep(1)
     st.session_state["redirect"] = True
     st.switch_page("pages/2_login.py")
+
+myid = st.session_state['ID']
+conn = st.connection("gsheets", type=GSheetsConnection)
 
 # 현재 파일 경로를 기준으로 데이터 경로 설정
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -147,13 +153,63 @@ with tab1:
             st.caption("선택한 연도의 데이터가 없습니다.")
 
         # 색상 범례 추가
-        st.markdown("### 색상 범례")
+        st.write("**색상 범례**")
         if min_value is not None and max_value is not None:
             st.text(f"🟢 높은 기대수명 (최대값) {max_value:.2f}세")
             st.text(f"🟡 중간 기대수명")
             st.text(f"🔴 낮은 기대수명 (최소값) {min_value:.2f}세")
     else:
         st.warning("유효한 데이터가 있는 연도 그룹이 없습니다.")
+
+
+    # 문제 목록
+    questions = [
+        ":male-detective: 대부분의 국가가 기대수명이 높아졌는데 그 이유는 무엇일까?",
+        ":female-detective: 왜 아프리카 쪽은 대체로 빨간색일까? 특히 다른 나라들은 대부분 초록색이 되었는데도 중앙아프리카공화국은 왜 아직 붉은색일까?",
+        ":male-detective: 그 외 덧붙일 의견은?"
+    ]
+    st.write("")
+    st.header("**💡요원들이여, 분석하라!**")
+    # 사용자 입력 폼
+    with st.form("data_input_form"):
+        answers = {}
+        for question in questions:
+            answers[question] = st.text_input(question)  # 각 질문에 대한 답변 입력
+        submit_button = st.form_submit_button("제출")
+
+    # Google Sheets에 데이터 추가
+    if submit_button:
+        # 모든 답변이 작성되었는지 확인
+        if all(answers.values()):
+            # Step 1: 기존 데이터 읽기
+            existing_data = conn.read(worksheet="Mission1-1", ttl="1s")
+            
+            # Step 2: 새로운 데이터 준비
+            new_data = pd.DataFrame(
+                [[myid] + list(answers.values())],  # ID와 답변을 하나의 리스트로 병합
+                columns=["ID"] + questions  # 열 이름 설정
+            )
+            
+            # Step 3: 기존 데이터와 새 데이터를 병합 (pd.concat 사용)
+            updated_data = pd.concat([existing_data, new_data], ignore_index=True)
+            
+            # Step 4: 병합된 데이터를 Google Sheets에 업데이트
+            conn.update(
+                worksheet="Mission1-1",  # 업데이트할 워크시트 이름
+                data=updated_data,  # 병합된 전체 데이터
+            )
+            
+            st.success("답변이 성공적으로 저장되었습니다!")
+        else:
+            st.error("모든 질문에 답변을 작성해주세요!")
+
+    # Google Sheets 데이터 읽기 및 표시
+    st.header("📊 Google Sheets 데이터")
+    df = conn.read(worksheet="Mission1-1", ttl="1s")
+    st.dataframe(df)
+
+
+        
 
 with tab2:
     csv_path = os.path.join(current_dir, "data", "child-mortality-igme.csv")
@@ -263,12 +319,60 @@ with tab2:
         st.caption("사망률 범위: 0%~40% 기준으로 색상 표시")
 
         # 색상 범례 추가
-        st.markdown("### 색상 범례")
+        st.write("**색상 범례**")
         st.text("🟢 초록색: 낮은 사망률 (0%)")
         st.text("🟡 노란색: 중간 사망률 (~20%)")
         st.text("🔴 빨간색: 높은 사망률 (40%)")
     else:
         st.warning("유효한 데이터가 있는 연도 그룹이 없습니다.")
+
+    # 문제 목록
+    questions = [
+                ":female-detective: 아동 사망률이 현대로 올수록 거의 다 낮아져 대부분 국가가 초록색이다. 왜 그럴까?",
+                ":male-detective: 왜 유독 아프리카 대륙에 있는 나라들은 과거에 아동사망률이 높았을까?",
+                ":female-detective: 그 외 덧붙일 의견은?"
+                ]
+    st.write("")
+    st.header("**💡요원들이여, 분석하라!**")
+    # 사용자 입력 폼
+    with st.form("data_input2_form"):
+        answers = {}
+        for question in questions:
+            answers[question] = st.text_input(question)  # 각 질문에 대한 답변 입력
+        submit_button = st.form_submit_button("제출")
+
+    # Google Sheets에 데이터 추가
+    if submit_button:
+        # 모든 답변이 작성되었는지 확인
+        if all(answers.values()):
+            # Step 1: 기존 데이터 읽기
+            existing_data = conn.read(worksheet="Mission1-2", ttl="1s")
+            
+            # Step 2: 새로운 데이터 준비
+            new_data = pd.DataFrame(
+                [[myid] + list(answers.values())],  # ID와 답변을 하나의 리스트로 병합
+                columns=["ID"] + questions  # 열 이름 설정
+            )
+            
+            # Step 3: 기존 데이터와 새 데이터를 병합 (pd.concat 사용)
+            updated_data = pd.concat([existing_data, new_data], ignore_index=True)
+            
+            # Step 4: 병합된 데이터를 Google Sheets에 업데이트
+            conn.update(
+                worksheet="Mission1-2",  # 업데이트할 워크시트 이름
+                data=updated_data,  # 병합된 전체 데이터
+            )
+            
+            st.success("답변이 성공적으로 저장되었습니다!")
+        else:
+            st.error("모든 질문에 답변을 작성해주세요!")
+
+    # Google Sheets 데이터 읽기 및 표시
+    st.header("📊 Google Sheets 데이터")
+    df = conn.read(worksheet="Mission1-2", ttl="1s")
+    st.dataframe(df)
+
+
 
 # 세 번째 Tab: 1990년 이후 5년 단위 난민 수
 with tab3:
@@ -352,3 +456,49 @@ with tab3:
         st.text("🔴 빨간색: 높은 난민 수 (1,000,000+)")
     else:
         st.warning("유효한 데이터가 있는 연도 그룹이 없습니다.")
+
+    # 문제 목록
+    questions = [
+                    ":male-detective: 왜 난민 수 그래프에서는 특정 국가들만 심하게 수치가 좋지 않을까?",
+                    ":female-detective: 2020~2024년에 갑자기 우크라이나의 난민 수가 많아진 이유가 뭘까?",
+                    ":male-detective: 그 외 덧붙일 의견은?"
+                ]
+    st.write("")
+    st.header("**💡요원들이여, 분석하라!**")
+    # 사용자 입력 폼
+    with st.form("data_input3_form"):
+        answers = {}
+        for question in questions:
+            answers[question] = st.text_input(question)  # 각 질문에 대한 답변 입력
+        submit_button = st.form_submit_button("제출")
+
+    # Google Sheets에 데이터 추가
+    if submit_button:
+        # 모든 답변이 작성되었는지 확인
+        if all(answers.values()):
+            # Step 1: 기존 데이터 읽기
+            existing_data = conn.read(worksheet="Mission1-3", ttl="1s")
+            
+            # Step 2: 새로운 데이터 준비
+            new_data = pd.DataFrame(
+                [[myid] + list(answers.values())],  # ID와 답변을 하나의 리스트로 병합
+                columns=["ID"] + questions  # 열 이름 설정
+            )
+            
+            # Step 3: 기존 데이터와 새 데이터를 병합 (pd.concat 사용)
+            updated_data = pd.concat([existing_data, new_data], ignore_index=True)
+            
+            # Step 4: 병합된 데이터를 Google Sheets에 업데이트
+            conn.update(
+                worksheet="Mission1-3",  # 업데이트할 워크시트 이름
+                data=updated_data,  # 병합된 전체 데이터
+            )
+            
+            st.success("답변이 성공적으로 저장되었습니다!")
+        else:
+            st.error("모든 질문에 답변을 작성해주세요!")
+
+    # Google Sheets 데이터 읽기 및 표시
+    st.header("📊 Google Sheets 데이터")
+    df = conn.read(worksheet="Mission1-3", ttl="1s")
+    st.dataframe(df)
