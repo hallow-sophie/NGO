@@ -24,14 +24,14 @@ with col1:
         st.switch_page("pages/3_미션1. 지구촌 변화와 실태 파악하기!.py")
     if st.button("미션:two:"):
         st.switch_page("pages/4_미션2. 지구의 자원을 공정하게 배분할 수 있다면.py")
-    if st.button("난민수"):
-        st.switch_page("pages/5_난민수.py")        
+    if st.button("미션:three:"):
+        st.switch_page("pages/5_미션3. 지구촌 평화를 위한 특별 임무.py")        
 
 with col2:
-    if st.button("NGO설립계획서"):
-        st.switch_page("pages/6_NGO설립계획서.py")
-    if st.button("인터뷰하기"):
-        st.switch_page("pages/7_인터뷰하기.py")
+    if st.button("미션:four:"):
+        st.switch_page("pages/6_미션4. 지구촌 평화를 위한 메시지를 전파하라!.py")
+    if st.button("미션:five:"):
+        st.switch_page("pages/7_미션5. 뉴스 앵커가 되어 세상을 변화시켜라!.py")
     if st.button("로그아웃"):
         st.session_state.pop("ID", None)
         st.success("로그아웃되었습니다. 로그인 페이지로 이동합니다.")

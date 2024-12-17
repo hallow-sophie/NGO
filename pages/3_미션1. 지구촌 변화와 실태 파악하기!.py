@@ -200,6 +200,9 @@ with tab1:
             )
             
             st.success("답변이 성공적으로 저장되었습니다!")
+            st.balloons()  # 풍선 애니메이션 추가
+            st.toast("제출이 완료되었습니다!")  # 토스트 메시지 (최신 Streamlit 버전 필요)
+
         else:
             st.error("모든 질문에 답변을 작성해주세요!")
 
@@ -364,6 +367,9 @@ with tab2:
             )
             
             st.success("답변이 성공적으로 저장되었습니다!")
+            st.balloons()  # 풍선 애니메이션 추가
+            st.toast("제출이 완료되었습니다!")  # 토스트 메시지 (최신 Streamlit 버전 필요)
+
         else:
             st.error("모든 질문에 답변을 작성해주세요!")
 
@@ -495,6 +501,9 @@ with tab3:
             )
             
             st.success("답변이 성공적으로 저장되었습니다!")
+            st.balloons()  # 풍선 애니메이션 추가
+            st.toast("제출이 완료되었습니다!")  # 토스트 메시지 (최신 Streamlit 버전 필요)
+
         else:
             st.error("모든 질문에 답변을 작성해주세요!")
 
