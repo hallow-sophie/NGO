@@ -28,10 +28,10 @@ os.makedirs(user_folder, exist_ok=True)
 # Streamlit 앱 설정
 st.title("NGO 설립계획서")
 
-# api_key = st.secrets.openAI["api_key"]
-api_key = os.getenv("OPENAI_API_KEY")
-if not api_key:
-    raise ValueError("API key not found. Please set the OPENAI_API_KEY environment variable.")
+api_key = st.secrets.openAI["api_key"]
+# api_key = os.getenv("OPENAI_API_KEY")
+# if not api_key:
+#     raise ValueError("API key not found. Please set the OPENAI_API_KEY environment variable.")
 
 # OpenAI 클라이언트 초기화
 client = OpenAI(api_key=api_key)
