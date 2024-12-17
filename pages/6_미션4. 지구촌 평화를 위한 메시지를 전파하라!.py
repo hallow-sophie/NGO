@@ -28,10 +28,10 @@ os.makedirs(user_folder, exist_ok=True)
 # Streamlit 앱 설정
 st.title("NGO 설립계획서")
 
-api_key = st.secrets.openAI["api_key"]
-# api_key = os.getenv("OPENAI_API_KEY")
-# if not api_key:
-#     raise ValueError("API key not found. Please set the OPENAI_API_KEY environment variable.")
+# api_key = st.secrets.openAI["api_key"]
+api_key = os.getenv("OPENAI_API_KEY")
+if not api_key:
+    raise ValueError("API key not found. Please set the OPENAI_API_KEY environment variable.")
 
 # OpenAI 클라이언트 초기화
 client = OpenAI(api_key=api_key)
@@ -175,21 +175,18 @@ with tab2:
 
     # PDF 파일 읽기
     if uploaded_file is not None:
-        try:
-            with pdfplumber.open(uploaded_file) as pdf:
-                tables0 = pdf.pages[0].extract_tables()
-                tables1 = pdf.pages[1].extract_tables()
-            
-            pdf_text = ""
-            pdf_text = pdf_text + clean_text("우리 NGO Project의 " + tables0[0][0][0] + "는 " + tables0[0][0][1] + "이야")
-            pdf_text = pdf_text + clean_text("그리고 우리 NGO Project의 " + tables1[0][0][0] + "는 " + tables1[0][0][1] + "이야")
+        logo_maker = "다음 이어지는 내용을 기반으로 NGO 단체의 로고를 글자없이 독창적으로 그려줘. 그림에는 글자가 들어가면 절대 안돼."
+        if uploaded_file is not None:
+            try:
+                with pdfplumber.open(uploaded_file) as pdf:
+                    for page in pdf.pages:
+                        # 페이지에서 테이블 추출
+                        imsi = page.extract_text()
+                        logo_maker = logo_maker + imsi
+            except Exception as e:
+                st.error(f"PDF 파일을 읽는 중 오류가 발생했습니다: {e}")
 
-            logo_maker = "다음 이어지는 내용을 기반으로 NGO 단체의 로고를 독창적으로 작성해줘."
-            file_content = logo_maker + pdf_text
-            st.session_state["pdf_file_content"] = file_content  # 파일 내용을 세션에 저장
-
-        except Exception as e:
-            st.error(f"PDF 파일을 읽는 중 오류가 발생했습니다: {e}")
+            st.session_state["pdf_file_content"] = logo_maker  # 파일 내용을 세션에 저장
 
     if st.session_state["pdf_file_content"] is not None:
         if st.button("로고 생성하기", key="generate_logo_button"):
