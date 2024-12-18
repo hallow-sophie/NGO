@@ -24,10 +24,15 @@ shapefile_path = os.path.join(current_dir, "data", "ne_110m_admin_0_countries.sh
 
 st.header("미션:one: 지구촌 변화와 실태 파악하기! :world_map:")
 
-contents = '''
+contents0 = '''
 🚨 **지령1: 평화 요원 여러분!** 🚨\n
-여기는 지구촌 평화단 본부입니다. 전 세계 곳곳에서 긴급한 구조 요청이 들어오고 있습니다. 난민, 빈곤, 전쟁, 의료 부족 등 지구촌의 여러 문제들이 우리를 기다리고 있어요! 🌍\n
-요원들의 첫 번째 임무는 **지구촌 상황을 조사**하고, 어디에서 어떤 일이 일어나고 있는지 명확히 파악하는 것입니다. 본부가 제공하는 지도와 데이터를 활용해 **현재 상황을 시각화**하고 분석한 후 여러분의 판단을 덧붙여 **본부에 보고**하세요.\n
+여기는 지구촌 평화단 본부입니다. 전 세계 곳곳에서 긴급한 구조 요청이 들어오고 있습니다.\n 
+난민, 빈곤, 전쟁, 의료 부족 등 지구촌의 여러 문제들이 우리를 기다리고 있어요! 🌍\n
+요원들의 첫 번째 임무는 **지구촌 상황을 조사**하고, 어디에서 어떤 일이 일어나고 있는지 명확히 파악하는 것입니다.\n 
+본부가 제공하는 지도와 데이터를 활용해 **현재 상황을 시각화**하고 분석한 후 여러분의 판단을 덧붙여 **본부에 보고**하세요.\n
+'''
+
+contents1 = '''
 🎯 **지령 목표:**\n
 1️⃣ 시대별 데이터를 토대로 전 세계의 갈등 지역과 문제에 대해 사태를 파악한다.\n
 2️⃣ 요원들이 직접 뽑아낸 질문에 답을 하며 지구촌 갈등의 원인을 찾아낸다.\n
@@ -36,7 +41,14 @@ contents = '''
 **준비됐나요? 그럼, 지도 위에서 활약할 시간입니다.** 🌐✨\n
 '''
 
-st.write(contents)
+st.write(contents0)
+st.write("")
+st.write("")
+
+st.write(contents1)
+st.write("")
+st.write("")
+st.markdown("---")
 
 # Tabs 생성
 tab1, tab2, tab3 = st.tabs(["기대수명 (1950년 이후, 5년 단위)","아동 사망률 (1980년, 5년 단위)","난민 수 (1990년 이후, 5년 단위)"])
@@ -207,7 +219,7 @@ with tab1:
             st.error("모든 질문에 답변을 작성해주세요!")
 
     # Google Sheets 데이터 읽기 및 표시
-    st.header("📊 Google Sheets 데이터")
+    st.header("📊 요원들의 분석 결과")
     df = conn.read(worksheet="Mission1-1", ttl="1s")
     st.dataframe(df)
 
@@ -374,7 +386,7 @@ with tab2:
             st.error("모든 질문에 답변을 작성해주세요!")
 
     # Google Sheets 데이터 읽기 및 표시
-    st.header("📊 Google Sheets 데이터")
+    st.header("📊 요원들의 분석 결과")
     df = conn.read(worksheet="Mission1-2", ttl="1s")
     st.dataframe(df)
 
@@ -508,6 +520,6 @@ with tab3:
             st.error("모든 질문에 답변을 작성해주세요!")
 
     # Google Sheets 데이터 읽기 및 표시
-    st.header("📊 Google Sheets 데이터")
+    st.header("📊 요원들의 분석 결과")
     df = conn.read(worksheet="Mission1-3", ttl="1s")
     st.dataframe(df)

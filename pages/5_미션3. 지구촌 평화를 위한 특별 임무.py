@@ -9,9 +9,10 @@ if "ID" not in st.session_state or st.session_state['ID'] is None:
     st.session_state["redirect"] = True
     st.switch_page("pages/2_login.py")
 
-st.header("✨지령3: 지구촌 평화를 위한 특별 임무✨")
+st.header("미션:three: 지구촌 평화를 위한 NGO 설립하기! ❤️")
 
 contents0 = '''
+✨ **지령3: 지구촌 평화를 위한 특별 임무** ✨\n
 평화 요원 여러분, 지금까지 훌륭히 미션들을 수행해왔습니다! 🙌\n
 갈등 지역과 문제를 파악했고, 자원을 공정하게 배분하는 방안도 시뮬레이션했습니다.\n
 이제 여러분은 한 걸음 더 나아가야 합니다.\n
@@ -28,12 +29,16 @@ contents1 = '''
 '''
 contents2='''
 📜 **특별 요청:**\n
-NGO의 목표와 활동에는 **공정성과 인류애**가 반드시 담겨야 합니다. 여러분이 설계한 NGO는 전 세계 사람들에게 희망을 전달하게 될 것입니다. 💖\n
+NGO의 목표와 활동에는 **공정성과 인류애**가 반드시 담겨야 합니다.\n 
+여러분이 설계한 NGO는 전 세계 사람들에게 희망을 전달하게 될 것입니다. 💖\n
+'''
+contents3='''
 🤝 **추가 지령:**\n
 다른 팀의 의견도 참고하며 **피드백과 협업**을 통해 NGO를 더욱 발전시키세요!\n
-여러분의 창의적인 아이디어가 지구촌 평화의 열쇠가 될 것입니다.
+여러분의 창의적인 아이디어가 지구촌 평화의 열쇠가 될 것입니다.\n
 평화 요원들의 열정적인 활약을 기대합니다! ✨🕊️\n
 '''
+
 st.write(contents0)
 st.write("")
 st.write("")
@@ -43,9 +48,10 @@ st.write("")
 st.write("")
 
 st.write(contents2)
+st.write("")
+st.write("")
 
-st.write("")
-st.write("")
+st.write(contents3)
 st.write("")
 st.write("")
 st.markdown("---")
@@ -61,6 +67,6 @@ with col2:
 col3, col4 = st.columns(2)
 
 with col3:
-    st.link_button(":three: **MHC**(make/meet happy children)" , "(https://docs.google.com/document/d/1t55IxhkYl0MPqujn2Nx_7NeBw813tVM4_q6zw9eg9yU/edit?tab=t.0")
+    st.link_button(":three: **HAPPY Kids**" , "https://docs.google.com/document/d/1t55IxhkYl0MPqujn2Nx_7NeBw813tVM4_q6zw9eg9yU/edit?tab=t.0")
 with col4:
     st.link_button(":four: **No동**" , "https://docs.google.com/document/d/1LmuT4kT7twFWzg4QOiqVECAbs1b62bt3aX3XnoO_mzU/edit?tab=t.0")
