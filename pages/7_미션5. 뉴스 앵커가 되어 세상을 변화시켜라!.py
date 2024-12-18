@@ -117,7 +117,7 @@ question_groups = {
 }
 
 # 탭 이름과 Google Sheets 이름 매핑
-tab_names = ["팀 RNC(Refugee Never Cry) 평가", "팀 BLUE ROSE 평가", "팀 HAPPY Kids 평가", "팀 C.F.W(Children Free From Work) 평가"]
+tab_names = ["팀 RNC(Refugee Never Cry)", "팀 BLUE ROSE", "팀 HAPPY Kids", "팀 C.F.W(Children Free From Work)"]
 sheet_names = ["TeamA", "TeamB", "TeamC", "TeamD"]
 tab_mapping = dict(zip(tab_names, sheet_names))
 
