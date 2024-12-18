@@ -69,4 +69,4 @@ col3, col4 = st.columns(2)
 with col3:
     st.link_button(":three: **HAPPY Kids**" , "https://docs.google.com/document/d/1t55IxhkYl0MPqujn2Nx_7NeBw813tVM4_q6zw9eg9yU/edit?tab=t.0")
 with col4:
-    st.link_button(":four: **No동**" , "https://docs.google.com/document/d/1LmuT4kT7twFWzg4QOiqVECAbs1b62bt3aX3XnoO_mzU/edit?tab=t.0")
+    st.link_button(":four: **C.F.W**(Children Free From Work)" , "https://docs.google.com/document/d/1LmuT4kT7twFWzg4QOiqVECAbs1b62bt3aX3XnoO_mzU/edit?tab=t.0")

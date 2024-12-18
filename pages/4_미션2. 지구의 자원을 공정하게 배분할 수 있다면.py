@@ -86,19 +86,36 @@ if current_question_index == 1:
     # 문제 출력 (일반 문제)
     st.write(f"문제: {current_question['question']}")
     st.latex(r"㉠ \cdot \left(\frac{㉡}{\text{㉢}}\right)")
+    st.write("")    
+
+    st.markdown("""
+    <div style="
+        border: 2px solid black; 
+        border-radius: 10px; 
+        padding: 10px; 
+        background-color: #f9f9f9;
+        box-shadow: 2px 2px 5px lightgrey;
+    ">
+        <h5 style="color: black; margin: 0;">보기</h5> <!-- 제목 크기를 작게 조정 -->
+        <div style="display: flex; justify-content: left; gap: 20px; margin-top: 10px; margin-left: 10px;">
+            <span style="font-size: 18px;">1. 모든 나라 인구 수 합</span>
+            <span style="font-size: 18px;">2. 해당 나라 인구 수</span>
+            <span style="font-size: 18px;">3. 100</span>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.write("")    
+    st.write("")    
+
     user_answer1 = st.text_input("㉠ 을 입력하세요.")
     user_answer2 = st.text_input("㉡ 을 입력하세요.")
     user_answer3 = st.text_input("㉢ 을 입력하세요.")
     
-    st.write("**보기**")
-    st.write("모든 나라 인구수 합")
-    st.write("해당 나라 인구수")
-    st.write("100")
-
     answer = [None] * 3
     answer[0] = "100"
-    answer[1] = "해당 나라 인구수"
-    answer[2] = "모든 나라 인구수 합"
+    answer[1] = "해당 나라 인구 수"
+    answer[2] = "모든 나라 인구 수 합"
 
     # 제출 버튼
     if st.button("제출"):

@@ -117,7 +117,7 @@ question_groups = {
 }
 
 # 탭 이름과 Google Sheets 이름 매핑
-tab_names = ["팀 A 평가", "팀 B 평가", "팀 C 평가", "팀 D 평가"]
+tab_names = ["팀 RNC(Refugee Never Cry) 평가", "팀 BLUE ROSE 평가", "팀 HAPPY Kids 평가", "팀 C.F.W(Children Free From Work) 평가"]
 sheet_names = ["TeamA", "TeamB", "TeamC", "TeamD"]
 tab_mapping = dict(zip(tab_names, sheet_names))
 
@@ -133,7 +133,7 @@ tabs = st.tabs(tab_names)
 # 각 탭에서 동일한 질문 출력
 for tab, tab_name in zip(tabs, tab_names):
     with tab:
-        st.subheader(f"{tab_name}에 대한 **동료평가 기준 문항**")
+        st.subheader(f"📍 {tab_name}의 발표가 어땠나요?")
         st.write("")
         st.write("")
         # st.subheader("동료평가 기준 문항")
@@ -196,7 +196,7 @@ for tab, tab_name in zip(tabs, tab_names):
             st.success(f"{tab_name}의 점수가 Google Sheets '{worksheet_name}' 시트에 저장되었습니다!")
             st.balloons()  # 풍선 애니메이션 추가
             st.toast("제출이 완료되었습니다!")  # 토스트 메시지 (최신 Streamlit 버전 필요)
-    
+
 # Google Sheets 데이터 표시
 # st.header("📊 Google Sheets 데이터")
 # for tab_name in tab_names:

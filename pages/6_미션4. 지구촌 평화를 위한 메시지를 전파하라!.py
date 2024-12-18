@@ -276,11 +276,34 @@ with tab2:
     with col3:
         st.link_button(":three: **Happy Kids**" , "https://www.canva.com/design/DAGZkIJ7gvU/pxXpMKGGHeQWgEChou8cug/edit")
     with col4:
-        st.link_button(":four: **No동**" , "https://www.canva.com/design/DAGZkIOn7Us/L4Ivb2fqNNH6iUoszvRdCQ/edit")    
+        st.link_button(":four: **C.F.W**(Children Free From Work)**" , "https://www.canva.com/design/DAGZkIOn7Us/L4Ivb2fqNNH6iUoszvRdCQ/edit")    
 
 # Tab 3: 뉴스기사 첨삭
 with tab3:
     st.header("📝AI 뉴스 편집자에게 첨삭을 요청합니다!")
+    tmp2 = '''
+        각 NGO 이름을 클릭해 뉴스 기사 작성본을 확인하세요.\n
+        작성한 뉴스기사 파일을 편집자에게 제출해 주세요.\n
+        신랄한 평가가 기다리고 있답니다.😉\n
+        '''
+    st.write(tmp2)
+    st.write('')
+    st.write('')
+    col1, col2 = st.columns(2)
+    with col1:
+        st.link_button(":one: **RNC**(Refugee Never Cry)" , "https://docs.google.com/document/d/1RF2hzBhv26sWiacT1VQIr8HSZFB7ACzkjSiXzOuvNWs/edit?tab=t.0"   )
+    with col2:
+        st.link_button(":two: **BLUE ROSE**" , "https://docs.google.com/document/d/1nDKGDu5W5VKaNObZrzUvZf6amezrYngViUIOJLWsd2I/edit?tab=t.0")
+    col3, col4 = st.columns(2)
+
+    with col3:
+        st.link_button(":three: **Happy Kids**" , "https://docs.google.com/document/d/1q92e22DYV1yNdMnO0paWcvAKMcWfp5_fyAPm3kv-FbE/edit?tab=t.0")
+    with col4:
+        st.link_button(":four: **C.F.W**(Children Free From Work)**" , "https://docs.google.com/document/d/10WBYdKRjv9xRNodh3q7Nl_O3FyhB_lCAOtGBF5_Zc10/edit?tab=t.0") 
+
+    st.write('')
+    st.write('')
+
     system_roles = [
         {
             "role": "system",
