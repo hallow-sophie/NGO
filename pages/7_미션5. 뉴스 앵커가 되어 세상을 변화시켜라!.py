@@ -25,7 +25,7 @@ contents0 = '''
 '''
 
 contents1 = '''
-📢 **지령 목표:**\n
+📢 **지령 내용:**\n
 1️⃣ 팀별로 준비한 뉴스 기사 대본을 토대로 발표 진행.\n
 2️⃣ 홍보물(포스터, 광고 등)을 활용해 발표의 완성도를 높이기.\n
 3️⃣ 다른 팀의 발표를 경청하며 공정하고 건설적인 피드백을 제공.\n
@@ -136,25 +136,34 @@ for tab, tab_name in zip(tabs, tab_names):
         st.subheader(f"📍 {tab_name}의 발표가 어땠나요?")
         st.write("")
         st.write("")
-        # st.subheader("동료평가 기준 문항")
         scores = []
+        feedback = []  # 주관식 답변 저장
 
-        # 각 질문에 대한 점수 입력
+        # 점수형 질문 처리
         for group_name, group_questions in question_groups.items():
             st.markdown(f"{group_name}")
-            # st.write("이 그룹에서는 관련된 문항을 종합적으로 평가해 주세요.")
             for i, question in enumerate(group_questions):
                 question_index = questions.index(question)  # 전체 질문에서 인덱스 확인
-                
-                score = st.radio(
-                    f"**{question}**",  # 질문 제목
-                    options=[1, 2, 3, 4, 5],  # 점수
-                    index=st.session_state["scores_by_tab"][tab_name][question_index] - 1,
-                    key=f"{tab_name}_Q{question_index}",  # 고유 키
-                    horizontal=True
-                )
-                scores.append(score)
+
+                # 마지막 두 문항은 주관식으로 처리
+                if question_index >= 12:
+                    answer = st.text_area(
+                        f"**{question}** (선택 사항)", 
+                        key=f"{tab_name}_Q{question_index}", 
+                        placeholder="여기에 답변을 입력하세요..."
+                    )
+                    scores.append(answer)
+                else:
+                    score = st.radio(
+                        f"**{question}**",  # 질문 제목
+                        options=[1, 2, 3, 4, 5],  # 점수
+                        index=st.session_state["scores_by_tab"][tab_name][question_index] - 1,
+                        key=f"{tab_name}_Q{question_index}",  # 고유 키
+                        horizontal=True
+                    )
+                    scores.append(score)
             st.write("")
+
         # 점수를 세션 상태에 저장
         st.session_state["scores_by_tab"][tab_name] = scores
 
@@ -171,7 +180,7 @@ for tab, tab_name in zip(tabs, tab_names):
 
             # 새로운 점수 데이터 준비
             new_data = pd.DataFrame(
-                [[myid] + st.session_state["scores_by_tab"][tab_name]],  # ID와 점수 병합
+                [[myid] + st.session_state["scores_by_tab"][tab_name] + feedback],  # ID, 점수, 주관식 답변 병합
                 columns=["ID"] + [f"Q{i+1}" for i in range(len(questions))]
             )
 
