@@ -110,7 +110,7 @@ if "user_query" not in st.session_state:
     st.session_state["user_query"] = "빈부격차는 어떻게 분배해야 할까?"
 
 def generate_logo(content):
-    with st.spinner("AI가 LOGO 를 그리고 있는 중이에요..."):
+    with st.spinner("AI LOGO 제작자가 그리고 있는 중이에요..."):
         response = client.images.generate(
             model="dall-e-3",
             prompt=content,
@@ -346,7 +346,7 @@ with tab3:
 
         current_chat.append({"role": "user", "content": query})
 
-        with st.spinner(f"첨삭이 진행 중 입니다..."):
+        with st.spinner(f"AI 편집자가 고심 중 입니다..."):
             response = generate_response(current_chat)
         current_chat.append({"role": "assistant", "content": response})
         st.write(response)
