@@ -193,7 +193,7 @@ elif current_question_index == 2:
 
 elif current_question_index == 3:
     st.subheader(f"📍문제 : {current_question_index}")
-    st.write("직접 계산해 봅시다.")
+    st.write("직접 계산 결과를 확인해 봅시다.")
     # st.title(f"현재 문제 번호: {current_question_index}")
 
     # 현재 문제 가져오기
@@ -309,7 +309,7 @@ elif current_question_index == 4:
             st.error("모든 질문에 답변을 작성해주세요!")
 
     # Google Sheets 데이터 읽기 및 표시
-    st.header("📊 Google Sheets 데이터")
+    st.header("📊 요원들의 분석 결과")
     df = conn.read(worksheet="Mission2-1", ttl="1s")
     st.dataframe(df)
     col1, col2 = st.columns(2)
@@ -329,7 +329,18 @@ elif current_question_index == 5:
     # 퀴즈 완료 화면
     st.title("퀴즈 완료!")
     st.write(f"축하합니다! 점수: {st.session_state['score']} / 4")
-    if st.button("다시 시작하기"):
-        st.session_state["current_question"] = 1
-        st.session_state["score"] = 0
-        st.rerun()
+#    if st.button("다시 시작하기"):
+#        st.session_state["current_question"] = 1
+#        st.session_state["score"] = 0
+#        st.rerun()
+    col1, col2 = st.columns(2)
+    with col1:
+        if st.button("다시 시작하기"):
+            st.session_state["current_question"] = 1
+            st.session_state["score"] = 0 
+            st.rerun()
+    with col2:
+        if st.button("전 단계로"):
+            st.session_state["current_question"] -= 1
+            st.session_state["score"] -= 1
+            st.rerun()
