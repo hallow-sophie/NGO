@@ -43,4 +43,4 @@ st.info("새로운 알림이 없습니다.")
 
 # Footer
 st.markdown("---")
-st.caption("© 2024 Your App. All rights reserved.")
+st.caption("© 2025 Your App. All rights reserved.")
