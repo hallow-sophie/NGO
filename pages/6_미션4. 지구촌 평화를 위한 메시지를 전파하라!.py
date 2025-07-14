@@ -26,7 +26,7 @@ user_folder = os.path.join(UPLOAD_FOLDER, user_id)
 os.makedirs(user_folder, exist_ok=True)
 
 # Streamlit 앱 설정
-st.header("미션:four: NGO 홍보물 제작하기! :newspaper: :frame_with_picture:")
+st.header("미션:four: NGO 홍보물 제작하기! 📰🖼️")
 contents0 = '''
 🎨 **지령4: 지구촌 평화를 위한 메시지를 전파하라!** 🎨\n
 평화 요원 여러분, 이제 여러분이 설립한 NGO가 본격적으로 활동을 시작할 준비가 되었습니다.\n

@@ -24,7 +24,7 @@ conn = st.connection("gsheets", type=GSheetsConnection)
 current_dir = os.path.dirname(os.path.abspath(__file__))
 shapefile_path = os.path.join(current_dir, "data", "ne_110m_admin_0_countries.shp")
 
-st.header("미션:one: 지구촌 변화와 실태 파악하기! :world_map:")
+st.header("미션:one: 지구촌 변화와 실태 파악하기! 🗺️")
 
 contents0 = '''
 🚨 **지령1: 평화 요원 여러분!** 🚨\n

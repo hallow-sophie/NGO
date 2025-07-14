@@ -15,7 +15,7 @@ if "ID" not in st.session_state or st.session_state['ID'] is None:
     st.session_state["redirect"] = True
     st.switch_page("pages/2_login.py")
 
-st.header("미션:two: 지구의 자원을 공정하게 분배할 수 있다면?:face_with_monocle:")
+st.header("미션:two: 지구의 자원을 공정하게 분배할 수 있다면?🧐")
 
 contents0 = '''
 🕊️ **지령2: 공정한 배분을 위한 전략회의** 🕊️\n

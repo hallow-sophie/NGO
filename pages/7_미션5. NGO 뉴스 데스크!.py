@@ -13,7 +13,7 @@ if "ID" not in st.session_state or st.session_state['ID'] is None:
 myid = st.session_state['ID']
 
 # 페이지 제목
-st.header("미션:five: NGO 뉴스 데스크 :woman_in_tuxedo::microphone::man_in_tuxedo:")
+st.header("미션:five: NGO 뉴스 데스크 🎤🤵")
 
 contents0 = '''
 🎥 **지령5: 뉴스 앵커가 되어 세상을 변화시켜라!** 🎥\n
