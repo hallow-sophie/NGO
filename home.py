@@ -10,7 +10,7 @@ if "ID" not in st.session_state or st.session_state['ID'] == None:
 
 # 사용자 이름 표시
 st.set_page_config(page_title="홈", page_icon="🏠")
-st.title(":globe_with_meridians:지구촌 평화단! NGO프로젝트:globe_with_meridians:")
+st.title("🌐지구촌 평화단! NGO프로젝트:globe_with_meridians:")
 st.subheader(f"환영합니다, {st.session_state['NAME']}님!")
 
 # st.subheader("메인 메뉴")
