@@ -268,10 +268,10 @@ elif current_question_index == 4:
     st.plotly_chart(fig)
 
     questions = [
-        ":male-detective: 인구수대로 자원을 배분한다면 어느 나라가 풍족하고, 어느 나라가 적게 가져가나요?",
-        ":female-detective: 현재 전 세계 결과와 비교하면 어떤 차이가 있을까요?",
-        ":male-detective: 인구 수대로 자원을 배분하는 것은 \"공정\" 한 방법일까요?",
-        ":female-detective: 공정하게 자원을 배분하는 방법은 무엇일까요?"
+        ":male_detective: 인구수대로 자원을 배분한다면 어느 나라가 풍족하고, 어느 나라가 적게 가져가나요?",
+        ":female_detective: 현재 전 세계 결과와 비교하면 어떤 차이가 있을까요?",
+        ":male_detective: 인구 수대로 자원을 배분하는 것은 \"공정\" 한 방법일까요?",
+        ":female_detective: 공정하게 자원을 배분하는 방법은 무엇일까요?"
     ]
     st.write("")
     st.header("**💡요원들이여, 분석하라!**")\

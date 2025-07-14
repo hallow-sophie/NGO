@@ -178,9 +178,9 @@ with tab1:
 
     # 문제 목록
     questions = [
-        ":male-detective: 대부분의 국가가 기대수명이 높아졌는데 그 이유는 무엇일까?",
-        ":female-detective: 왜 아프리카 쪽은 대체로 빨간색일까? 특히 다른 나라들은 대부분 초록색이 되었는데도 중앙아프리카공화국은 왜 아직 붉은색일까?",
-        ":male-detective: 그 외 덧붙일 의견은?"
+        ":male_detective: 대부분의 국가가 기대수명이 높아졌는데 그 이유는 무엇일까?",
+        ":female_detective: 왜 아프리카 쪽은 대체로 빨간색일까? 특히 다른 나라들은 대부분 초록색이 되었는데도 중앙아프리카공화국은 왜 아직 붉은색일까?",
+        ":male_detective: 그 외 덧붙일 의견은?"
     ]
     st.write("")
     st.header("**💡요원들이여, 분석하라!**")
@@ -345,9 +345,9 @@ with tab2:
 
     # 문제 목록
     questions = [
-                ":female-detective: 아동 사망률이 현대로 올수록 거의 다 낮아져 대부분 국가가 초록색이다. 왜 그럴까?",
-                ":male-detective: 왜 유독 아프리카 대륙에 있는 나라들은 과거에 아동사망률이 높았을까?",
-                ":female-detective: 그 외 덧붙일 의견은?"
+                ":female_detective: 아동 사망률이 현대로 올수록 거의 다 낮아져 대부분 국가가 초록색이다. 왜 그럴까?",
+                ":male_detective: 왜 유독 아프리카 대륙에 있는 나라들은 과거에 아동사망률이 높았을까?",
+                ":female_detective: 그 외 덧붙일 의견은?"
                 ]
     st.write("")
     st.header("**💡요원들이여, 분석하라!**")
@@ -479,9 +479,9 @@ with tab3:
 
     # 문제 목록
     questions = [
-                    " :male-detective: 왜 난민 수 그래프에서는 특정 국가들만 심하게 수치가 좋지 않을까?",
-                    " :female-detective: 2020~2024년에 갑자기 우크라이나의 난민 수가 많아진 이유가 뭘까?",
-                    " :male-detective: 그 외 덧붙일 의견은?"
+                    ":male_detective: 왜 난민 수 그래프에서는 특정 국가들만 심하게 수치가 좋지 않을까?",
+                    ":female_detective: 2020~2024년에 갑자기 우크라이나의 난민 수가 많아진 이유가 뭘까?",
+                    ":male_detective: 그 외 덧붙일 의견은?"
                 ]
     st.write("")
     st.header("**💡요원들이여, 분석하라!**")
